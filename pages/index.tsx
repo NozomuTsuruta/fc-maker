@@ -2,6 +2,7 @@ import { Button } from "@material-ui/core";
 import React, { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { Export } from "../components/Export";
+import { Hooks } from "../components/Hooks";
 import { Name } from "../components/Name";
 import { Output } from "../components/Output";
 import { Props } from "../components/Props";
@@ -22,6 +23,7 @@ export default function Home() {
           <Name />
           <Export />
           <Props />
+          <Hooks />
           <Button type="submit">SEND</Button>
         </form>
       </FormProvider>
