@@ -21,7 +21,7 @@ export const Hooks = () => {
         <div key={item.id}>
           <FormControl>
             <Controller
-              name={`hooks[${index}].title`}
+              name={`hooks[${index}].name`}
               control={control}
               defaultValue="state"
               render={({ onChange, onBlur, ref }) => (
@@ -38,7 +38,7 @@ export const Hooks = () => {
             />
           </FormControl>
           <TextField
-            name={`hooks[${index}].name`}
+            name={`hooks[${index}].state`}
             inputRef={register}
             label="変数名など"
           />

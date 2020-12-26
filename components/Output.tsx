@@ -1,5 +1,5 @@
 import { Button } from "@material-ui/core";
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Markdown } from "./Markdown";
 
@@ -8,24 +8,73 @@ type Props = {
 };
 
 export const Output: FC<Partial<Props>> = ({ data }) => {
-  const [text, setText] = useState<string>(`
-  import React,{FC,${data?.hooks ? data.hooks : ""}} from 'react'
+  const [text, setText] = useState<string>("");
+  useEffect(() => {
+    setText(`
+    import React,{ FC${data?.hooks ? countHooks(data.hooks) : ""} } from 'react';
+  
+    ${
+      data?.props
+        ? `type Props = {\n${
+            data?.props
+              ? data.props
+                  .map(({ name, type }: any) => `\t\t${name}: ${type};\n`)
+                  .join("")
+              : ""
+          }\t};`
+        : ""
+    }
+  
+    ${data?.exportType === "named" ? "export " : ""}const ${data?.name}: FC${
+      data?.props ? "<Props>" : ""
+    } = ({ ${
+      data?.props ? data.props.map(({ name }: any) => `${name}, `).join("") : ""
+    }}) => {
+        ${data?.hooks ? sortHooks(data.hooks) : ""}
+  
+        return (
+            <div></div>
+        )
+    };
+    ${data?.exportType === "default" ? `export default ${data?.name};` : ""}
+    `);
+  }, [data]);
 
-  ${data?.props ? `type Props = {\n${data?.props ? data.props.map(({name,type}:any)=>`\t${name}: ${type};\n`).join('') : ""}  }`:""}
-
-  ${data?.exportType === "named" ? "export " : ""}const ${
-    data?.name
-  }:FC${data?.props ?"<Props>":""} = (${data?.props ? data.props.map(({name}:any)=>`${name}, `).join('') : ""}) => {
-      ${data?.functions ? data.functions : ""}
-
-      return (
-          <div></div>
-      )
-  };
-  ${data?.exportType === "default" ? `export default ${data?.name};` : ""}
-  `);
   const [isResult, setIsResult] = useState(false);
 
+  const countHooks = (hooks: any) => {
+    let string = "";
+    const arr = hooks.map(({ name }: any) => name);
+    if (arr.includes("state")) {
+      string += ", useState";
+    }
+    if (arr.includes("effect")) {
+      string += ", useEffect";
+    }
+    if (arr.includes("ref")) {
+      string += ", useRef";
+    }
+    return string;
+  };
+
+  const sortHooks = (hooks: any) => {
+    let string = "";
+    hooks.forEach(({ name, state }: any) => {
+      if (name === "state") {
+        string += `\t\tconst [${state}, set${state.replace(
+          0,
+          state[0].toUpperCase()
+        )}] = useState();\n`;
+      } else if (name === "effect") {
+        string += `useEffect(() => {
+          
+        },[${state}]);\n`;
+      } else if (name === "ref") {
+        string += `\t\tconst ${state} = useRef();\n`;
+      }
+    });
+    return string;
+  };
 
   return (
     <>
