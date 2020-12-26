@@ -1,5 +1,6 @@
 import React, { FC, useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import { Markdown } from "./Markdown";
 
 type Props = {
   name: string;
@@ -21,6 +22,7 @@ export const Output: FC<Partial<Props>> = ({
   propsName,
 }) => {
   const [text, setText] = useState<string>(`
+  \`\`\`
   import React,{FC,${hooks ? hooks : ""}} from 'react'
 
   type Props = {
@@ -38,14 +40,21 @@ export const Output: FC<Partial<Props>> = ({
   };
 
   ${exportType === "default" ? `export default ${name};` : ""}
+  \`\`\`
   `);
+  const [isResult, setIsResult] = useState(false);
 
   return (
     <>
-      <div>{text}</div>
-      <CopyToClipboard text={text}>
-        <button>Copy to clipboard with button</button>
-      </CopyToClipboard>
+      {isResult && (
+        <>
+          <Markdown value={text} />
+          <CopyToClipboard text={text}>
+            <button>Copy to clipboard with button</button>
+          </CopyToClipboard>
+        </>
+      )}
+      {!isResult && <button onClick={() => setIsResult(true)}>作成</button>}
     </>
   );
 };

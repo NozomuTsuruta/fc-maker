@@ -2,9 +2,11 @@ import React from "react";
 import { Output } from "../components/Output";
 
 export default function Home() {
+    
   return (
-    <div>
+    <form>
+      
       <Output exportType="default" />
-    </div>
+    </form>
   );
 }
