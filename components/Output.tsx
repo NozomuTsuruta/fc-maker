@@ -1,5 +1,5 @@
 import { Button } from "@material-ui/core";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Markdown } from "./Markdown";
 
@@ -8,29 +8,24 @@ type Props = {
 };
 
 export const Output: FC<Partial<Props>> = ({ data }) => {
-  const [text, setText] = useState<string>("");
-  useEffect(() => {
-    setText(`
-    import React,{FC,${data?.hooks ? data.hooks : ""}} from 'react'
-  
-    type Props = {
-      ${data?.props ? data.props : ""}
-    }
-  
-    ${data?.exportType === "named" ? "export " : ""}const ${
-      data?.name
-    }:FC<Props> = (${data?.propsName ? data.propsName : ""}) => {
-        ${data?.functions ? data.functions : ""}
-  
-        return (
-            <div></div>
-        )
-    };
-  
-    ${data?.exportType === "default" ? `export default ${data?.name};` : ""}
-    `);
-  }, []);
+  const [text, setText] = useState<string>(`
+  import React,{FC,${data?.hooks ? data.hooks : ""}} from 'react'
+
+  ${data?.props ? `type Props = {\n${data?.props ? data.props.map(({name,type}:any)=>`\t${name}: ${type};\n`).join('') : ""}  }`:""}
+
+  ${data?.exportType === "named" ? "export " : ""}const ${
+    data?.name
+  }:FC${data?.props ?"<Props>":""} = (${data?.props ? data.props.map(({name}:any)=>`${name}, `).join('') : ""}) => {
+      ${data?.functions ? data.functions : ""}
+
+      return (
+          <div></div>
+      )
+  };
+  ${data?.exportType === "default" ? `export default ${data?.name};` : ""}
+  `);
   const [isResult, setIsResult] = useState(false);
+
 
   return (
     <>

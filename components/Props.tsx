@@ -4,7 +4,7 @@ import { useFieldArray, useFormContext } from "react-hook-form";
 
 export const Props = () => {
   const { control, register } = useFormContext();
-  const { fields, append, prepend, remove } = useFieldArray({
+  const { fields, append, remove } = useFieldArray({
     control,
     name: "props",
   });
@@ -29,9 +29,6 @@ export const Props = () => {
       ))}
       <Button type="button" onClick={() => append({})}>
         append
-      </Button>
-      <Button type="button" onClick={() => prepend({})}>
-        prepend
       </Button>
     </>
   );
