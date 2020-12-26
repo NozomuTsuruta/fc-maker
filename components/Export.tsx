@@ -1,18 +1,30 @@
+import { FormControlLabel, Radio, RadioGroup } from "@material-ui/core";
 import React from "react";
-import { useFormContext } from "react-hook-form";
+import { useController, useFormContext } from "react-hook-form";
 
 export const Export = () => {
-  const { register } = useFormContext();
+  const { control } = useFormContext();
+  const { field } = useController({
+    name: "exportType",
+    defaultValue: "named",
+    control,
+  });
+
+  const radioList = ["named", "default"];
+
   return (
-    <>
-      <label className="inline-flex items-center mt-3">
-        <input type="radio" className="h-5 w-5" name="exportType" value="default" />
-        <span className="ml-2 text-gray-700">Default</span>
-      </label>
-      <label className="inline-flex items-center mt-3">
-        <input type="radio" className="h-5 w-5" name="exportType" value="named" />
-        <span className="ml-2 text-gray-700">Named</span>
-      </label>
-    </>
+    <RadioGroup>
+      {radioList.map((name) => (
+        <FormControlLabel
+          control={<Radio />}
+          label={`${name} export`}
+          ref={field.ref}
+          onChange={field.onChange}
+          onBlur={field.onBlur}
+          name={field.name}
+          value={name}
+        />
+      ))}
+    </RadioGroup>
   );
 };
