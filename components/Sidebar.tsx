@@ -6,30 +6,18 @@ import {
   ListSubheader,
 } from "@material-ui/core";
 import React from "react";
-import ErrorOutlineRoundedIcon from "@material-ui/icons/ErrorOutlineRounded";
 import FiberNewRoundedIcon from "@material-ui/icons/FiberNewRounded";
 import { styled } from "../utils";
+import Router from "next/router";
 
 export const Sidebar = () => {
   return (
     <StyledList subheader={<ListSubheader component="div">Menu</ListSubheader>}>
       <ListItem button>
-        <ListItemIcon>
+        <ListItemIcon onClick={() => Router.push("/")}>
           <FiberNewRoundedIcon />
         </ListItemIcon>
         <ListItemText primary="Function Component" />
-      </ListItem>
-      <ListItem button disabled>
-        <ListItemIcon>
-          <ErrorOutlineRoundedIcon />
-        </ListItemIcon>
-        <ListItemText primary="React Hook Form" />
-      </ListItem>
-      <ListItem button disabled>
-        <ListItemIcon>
-          <ErrorOutlineRoundedIcon />
-        </ListItemIcon>
-        <ListItemText primary="Styled Components" />
       </ListItem>
     </StyledList>
   );

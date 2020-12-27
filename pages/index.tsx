@@ -18,6 +18,7 @@ export type FormData = {
 export default function Home() {
   const methods = useForm<FormData>();
   const [data, setData] = useState<FormData>();
+  console.log(methods.formState.isSubmitted);
 
   const onSubmit = (data: FormData) => {
     console.log(data);
@@ -33,11 +34,15 @@ export default function Home() {
             <Export />
             <Props />
             <Hooks />
-            <Button type="submit">SEND</Button>
+            {!data && (
+              <Button type="submit" variant="outlined" color="primary">
+                GET!
+              </Button>
+            )}
           </Grid>
         </form>
       </FormProvider>
-      {methods.formState.isSubmitted && <Output data={data} />}
+      <Output data={data} />
     </StyledContainer>
   );
 }

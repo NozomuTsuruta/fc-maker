@@ -1,4 +1,4 @@
-import { Button, CardHeader, IconButton, Card } from "@material-ui/core";
+import { CardHeader, IconButton, Card } from "@material-ui/core";
 import React, { FC, useEffect, useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Markdown } from "./Markdown";
@@ -44,8 +44,6 @@ export const Output: FC<Partial<Props>> = ({ data }) => {
     `);
   }, [data]);
 
-  const [isResult, setIsResult] = useState(false);
-
   const countHooks = (hooks: { name: string; state: string }[]) => {
     let string = "";
     const arr = hooks.map(({ name }) => name);
@@ -79,26 +77,21 @@ export const Output: FC<Partial<Props>> = ({ data }) => {
     return string;
   };
 
-  return (
-    <>
-      {isResult && (
-        <>
-          <Card>
-            <CardHeader
-              action={
-                <CopyToClipboard text={text}>
-                  <IconButton>
-                    <FileCopyIcon />
-                  </IconButton>
-                </CopyToClipboard>
-              }
-              title="created! copy click right button 👉"
-            />
-            <Markdown value={`\`\`\`${text}`} />
-          </Card>
-        </>
-      )}
-      {!isResult && <Button onClick={() => setIsResult(true)}>作成</Button>}
-    </>
+  return data ? (
+    <Card>
+      <CardHeader
+        action={
+          <CopyToClipboard text={text}>
+            <IconButton>
+              <FileCopyIcon />
+            </IconButton>
+          </CopyToClipboard>
+        }
+        title="created! copy click right button 👉"
+      />
+      <Markdown value={`\`\`\`${text}`} />
+    </Card>
+  ) : (
+    <div></div>
   );
 };

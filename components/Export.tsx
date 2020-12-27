@@ -7,8 +7,8 @@ export const Export = () => {
   const { control } = useFormContext();
   const { field } = useController({
     name: "exportType",
-    defaultValue: "named",
     control,
+    defaultValue: "named",
   });
 
   const radioList = ["named", "default"];
@@ -18,7 +18,9 @@ export const Export = () => {
       <RadioGroup>
         {radioList.map((name) => (
           <FormControlLabel
-            control={<Radio color="primary" />}
+            control={
+              <Radio color="primary"/>
+            }
             label={`${name[0].toUpperCase() + name.slice(1)} Export`}
             ref={field.ref}
             onChange={field.onChange}

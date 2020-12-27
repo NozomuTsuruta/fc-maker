@@ -62,7 +62,7 @@ export const Header: FC<Props> = (props) => {
       <HideOnScroll {...props}>
         <StyledAppBar>
           <Toolbar>
-            <Typography variant="h6">React Maker</Typography>
+            <StyledTypography variant="h6">React Maker</StyledTypography>
             <BuildRoundedIcon />
           </Toolbar>
         </StyledAppBar>
@@ -70,7 +70,7 @@ export const Header: FC<Props> = (props) => {
       <Toolbar id="back-to-top-anchor" />
       {props.children}
       <ScrollTop {...props}>
-        <Fab color="secondary" size="small">
+        <Fab size="medium">
           <KeyboardArrowUpIcon />
         </Fab>
       </ScrollTop>
@@ -78,8 +78,12 @@ export const Header: FC<Props> = (props) => {
   );
 };
 
+const StyledTypography = styled(Typography)({
+  marginRight: 10,
+});
+
 const ButtonWrapper = styled("div")({
-  positon: "fixed",
+  position: "fixed",
   bottom: 16,
   right: 16,
 });
