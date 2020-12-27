@@ -25,6 +25,7 @@ export const Export = () => {
             onBlur={field.onBlur}
             name={field.name}
             value={name}
+            key={name}
           />
         ))}
       </RadioGroup>

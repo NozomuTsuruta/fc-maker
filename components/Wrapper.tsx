@@ -25,19 +25,19 @@ export const Wrapper: FC<Props> = ({
   );
 };
 
-const StyledPaper = styled(Paper)`
-  padding: 20px;
-  margin-bottom: 20px;
-  position: relative;
-`;
+const StyledPaper = styled(Paper)({
+  padding: 20,
+  marginBottom: 20,
+  position: "relative",
+});
 
-const StyledTypography = styled(Typography)`
-  margin-bottom: 20px !important;
-  line-height: 1;
-`;
+const StyledTypography = styled(Typography)({
+  marginBottom: 20,
+  lineHeight: 1,
+});
 
-const Action = styled.div`
-  position: absolute;
-  top: 5px;
-  right: 5px;
-`;
+const Action = styled("div")({
+  position: "absolute",
+  top: 5,
+  right: 5,
+});

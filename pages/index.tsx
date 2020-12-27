@@ -7,7 +7,6 @@ import { Hooks } from "../components/Hooks";
 import { Name } from "../components/Name";
 import { Output } from "../components/Output";
 import { Props } from "../components/Props";
-import { sp } from "../utils";
 
 export type FormData = {
   name: string;
@@ -43,11 +42,8 @@ export default function Home() {
   );
 }
 
-const StyledContainer = styled(Container)`
-  padding: 30px 150px;
-  background-color: #f5f5f5;
-  overflow-y: auto;
-  ${sp`
-    padding: 20px;
-  `};
-`;
+const StyledContainer = styled(Container)({
+  padding: "30px 150px",
+  backgroundColor: "#f5f5f5",
+  overflowY: "auto",
+});

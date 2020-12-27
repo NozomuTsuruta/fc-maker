@@ -1,5 +1,3 @@
-import React from "react";
-import Head from "next/head";
 import Document, { DocumentContext } from "next/document";
 import { ServerStyleSheet } from "styled-components";
 import { ServerStyleSheets } from "@material-ui/styles";
@@ -30,14 +28,11 @@ export default class MyDocument extends Document {
       return {
         ...initialProps,
         styles: (
-          <React.Fragment>
+          <>
             {initialProps.styles}
             {styledComponentsSheet.getStyleElement()}
             {materialSheets.getStyleElement()}
-            <Head>
-              <title>React Maker</title>{" "}
-            </Head>
-          </React.Fragment>
+          </>
         ),
       };
     } finally {

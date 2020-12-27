@@ -1,9 +1,13 @@
 import React, { useEffect } from "react";
 import { AppProps } from "next/app";
-import { Grid, StylesProvider } from "@material-ui/core";
-import { Header } from "../components/Header";
-import { Sidebar } from "../components/Sidebar";
-import { is_sp } from "../utils/index";
+import { CssBaseline } from "@material-ui/core";
+import { ThemeProvider as StyledComponentsThemeProvider } from "styled-components";
+import {
+  ThemeProvider as MaterialUIThemeProvider,
+  StylesProvider,
+} from "@material-ui/core/styles";
+import { theme } from "../utils/index";
+import { Layout } from "../components/Layout";
 
 export default function App({ Component, pageProps }: AppProps) {
   /**
@@ -18,18 +22,14 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <StylesProvider injectFirst>
-      <Header>
-        <Grid container>
-          {!is_sp() && (
-            <Grid item sm={3}>
-              <Sidebar />
-            </Grid>
-          )}
-          <Grid item sm={9} xs={12}>
+      <MaterialUIThemeProvider theme={theme}>
+        <StyledComponentsThemeProvider theme={theme}>
+          <CssBaseline />
+          <Layout>
             <Component {...pageProps} />
-          </Grid>
-        </Grid>
-      </Header>
+          </Layout>
+        </StyledComponentsThemeProvider>
+      </MaterialUIThemeProvider>
     </StylesProvider>
   );
 }

@@ -1,6 +1,5 @@
 import {
   AppBar,
-  CssBaseline,
   Fab,
   Slide,
   Toolbar,
@@ -12,8 +11,8 @@ import React, { FC } from "react";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import { ReactElement } from "react";
 import { ReactNode } from "react";
-import styled from "styled-components";
 import BuildRoundedIcon from "@material-ui/icons/BuildRounded";
+import { styled } from "@material-ui/styles";
 
 type Props = {
   window?: () => Window;
@@ -60,7 +59,6 @@ const ScrollTop: FC<Props> = ({ window, children }) => {
 export const Header: FC<Props> = (props) => {
   return (
     <>
-      <CssBaseline />
       <HideOnScroll {...props}>
         <StyledAppBar>
           <Toolbar>
@@ -80,12 +78,12 @@ export const Header: FC<Props> = (props) => {
   );
 };
 
-const ButtonWrapper = styled.div`
-  position: fixed;
-  bottom: 16px;
-  right: 16px;
-`;
+const ButtonWrapper = styled("div")({
+  position: "fixed",
+  bottom: 16,
+  right: 16,
+});
 
-const StyledAppBar = styled(AppBar)`
-  background-color: #20232a;
-`;
+const StyledAppBar = styled(AppBar)({
+  backgroundColor: "#20232a",
+});
