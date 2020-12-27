@@ -8,7 +8,7 @@ import {
 import React from "react";
 import ErrorOutlineRoundedIcon from "@material-ui/icons/ErrorOutlineRounded";
 import FiberNewRoundedIcon from "@material-ui/icons/FiberNewRounded";
-import styled from "styled-components";
+import { styled } from "../utils";
 
 export const Sidebar = () => {
   return (
@@ -35,8 +35,8 @@ export const Sidebar = () => {
   );
 };
 
-const StyledList = styled(List)`
-  max-width: 300px;
-  text-overflow: ellipsis;
-  margin-left: 10px;
-`;
+const StyledList = styled(List)({
+  maxWidth: 300,
+  textOverflow: "ellipsis",
+  marginLeft: 10,
+});

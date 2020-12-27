@@ -1,6 +1,6 @@
 import { TextField } from "@material-ui/core";
 import React, { FC } from "react";
-import styled from "styled-components";
+import { styled } from "../utils";
 
 type Props = {
   name: string;
@@ -9,16 +9,10 @@ type Props = {
 };
 
 export const Input: FC<Props> = (props) => {
-  return (
-    <StyledTextField
-      variant="outlined"
-      autoFocus
-      {...props}
-    />
-  );
+  return <StyledTextField variant="outlined" autoFocus {...props} />;
 };
 
-const StyledTextField = styled(TextField)`
-  min-width: 200px;
-  margin-right: 20px;
-`;
+const StyledTextField = styled(TextField)({
+  minWidth: 200,
+  marginRight: 20,
+});

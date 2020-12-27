@@ -6,13 +6,13 @@ import {
   MenuItem,
   Select,
 } from "@material-ui/core";
-import styled from "styled-components";
 import React from "react";
 import { Controller, useFieldArray, useFormContext } from "react-hook-form";
 import AddIcon from "@material-ui/icons/Add";
 import ClearIcon from "@material-ui/icons/Clear";
 import { Input } from "./Input";
 import { Wrapper } from "./Wrapper";
+import { styled } from "../utils";
 
 export const Hooks = () => {
   const { control, register } = useFormContext();
@@ -73,7 +73,7 @@ export const Hooks = () => {
   );
 };
 
-const StyledSelect = styled(Select)`
-  min-width: 200px;
-  margin-right: 20px;
-`;
+const StyledSelect = styled(Select)({
+  minWidth: 200,
+  marginRight: 20,
+});

@@ -12,7 +12,7 @@ import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import { ReactElement } from "react";
 import { ReactNode } from "react";
 import BuildRoundedIcon from "@material-ui/icons/BuildRounded";
-import { styled } from "@material-ui/styles";
+import { styled } from "../utils";
 
 type Props = {
   window?: () => Window;
@@ -79,7 +79,7 @@ export const Header: FC<Props> = (props) => {
 };
 
 const ButtonWrapper = styled("div")({
-  position: "fixed",
+  positon: "fixed",
   bottom: 16,
   right: 16,
 });

@@ -1,5 +1,4 @@
 import Document, { DocumentContext } from "next/document";
-import { ServerStyleSheet } from "styled-components";
 import { ServerStyleSheets } from "@material-ui/styles";
 
 /**
@@ -11,7 +10,6 @@ export default class MyDocument extends Document {
    */
   static async getInitialProps(ctx: DocumentContext) {
     // それぞれサーバ側のレンダリングに処理を追加していると思われる
-    const styledComponentsSheet = new ServerStyleSheet();
     const materialSheets = new ServerStyleSheets();
     const originalRenderPage = ctx.renderPage;
 
@@ -19,10 +17,7 @@ export default class MyDocument extends Document {
       ctx.renderPage = () =>
         originalRenderPage({
           enhanceApp: (App) => (props) =>
-            styledComponentsSheet.collectStyles(
-              // App -> _app.tsx
-              materialSheets.collect(<App {...props} />)
-            ),
+            materialSheets.collect(<App {...props} />),
         });
       const initialProps = await Document.getInitialProps(ctx);
       return {
@@ -30,13 +25,11 @@ export default class MyDocument extends Document {
         styles: (
           <>
             {initialProps.styles}
-            {styledComponentsSheet.getStyleElement()}
             {materialSheets.getStyleElement()}
           </>
         ),
       };
     } finally {
-      styledComponentsSheet.seal();
     }
   }
 }

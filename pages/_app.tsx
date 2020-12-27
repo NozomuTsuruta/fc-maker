@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { AppProps } from "next/app";
 import { CssBaseline } from "@material-ui/core";
-import { ThemeProvider as StyledComponentsThemeProvider } from "styled-components";
 import {
   ThemeProvider as MaterialUIThemeProvider,
   StylesProvider,
@@ -23,12 +22,10 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <StylesProvider injectFirst>
       <MaterialUIThemeProvider theme={theme}>
-        <StyledComponentsThemeProvider theme={theme}>
-          <CssBaseline />
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </StyledComponentsThemeProvider>
+        <CssBaseline />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </MaterialUIThemeProvider>
     </StylesProvider>
   );

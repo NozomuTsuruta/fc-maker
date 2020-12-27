@@ -1,12 +1,12 @@
-import { Button, Container, Grid } from "@material-ui/core";
+import { Button, Grid, Container } from "@material-ui/core";
 import React, { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import styled from "styled-components";
 import { Export } from "../components/Export";
 import { Hooks } from "../components/Hooks";
 import { Name } from "../components/Name";
 import { Output } from "../components/Output";
 import { Props } from "../components/Props";
+import { styled } from "../utils/index";
 
 export type FormData = {
   name: string;
@@ -45,5 +45,4 @@ export default function Home() {
 const StyledContainer = styled(Container)({
   padding: "30px 150px",
   backgroundColor: "#f5f5f5",
-  overflowY: "auto",
 });

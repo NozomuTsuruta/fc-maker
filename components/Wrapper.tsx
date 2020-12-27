@@ -2,7 +2,7 @@ import { Paper, Typography } from "@material-ui/core";
 import React from "react";
 import { ReactNode } from "react";
 import { FC } from "react";
-import styled from "styled-components";
+import { styled } from "../utils";
 
 type Props = {
   title: string;
@@ -32,7 +32,7 @@ const StyledPaper = styled(Paper)({
 });
 
 const StyledTypography = styled(Typography)({
-  marginBottom: 20,
+  marginBottom: "20px !important",
   lineHeight: 1,
 });
 
