@@ -5,6 +5,7 @@ import {
   MenuItem,
   Select,
 } from "@material-ui/core";
+import styled from 'styled-components'
 import React from "react";
 import { Controller, useFieldArray, useFormContext } from "react-hook-form";
 import AddIcon from "@material-ui/icons/Add";
@@ -22,14 +23,14 @@ export const Hooks = () => {
   return (
     <Wrapper title="Hooks">
       {fields.map((item, index) => (
-        <div key={item.id}>
+        <Wrapper key={item.id} title={`Hooks ${index + 1}`} variant="subtitle1">
           <FormControl>
             <Controller
               name={`hooks[${index}].name`}
               control={control}
               defaultValue="state"
               render={({ onChange, onBlur, ref }) => (
-                <Select
+                <StyledSelect
                   variant="outlined"
                   onBlur={onBlur}
                   onChange={(e) => onChange(e.target.value)}
@@ -37,7 +38,7 @@ export const Hooks = () => {
                   <MenuItem value="state">useState</MenuItem>
                   <MenuItem value="effect">useEffect</MenuItem>
                   <MenuItem value="ref">useRef</MenuItem>
-                </Select>
+                </StyledSelect>
               )}
             />
           </FormControl>
@@ -45,12 +46,16 @@ export const Hooks = () => {
           <IconButton onClick={() => remove(index)}>
             <ClearIcon />
           </IconButton>
-        </div>
+        </Wrapper>
       ))}
-      <Button type="button" onClick={() => append({})}>
+      <Button type="button" onClick={() => append({})} variant="outlined">
         <AddIcon />
         <span>追加する</span>
       </Button>
     </Wrapper>
   );
 };
+
+const StyledSelect = styled(Select)`
+  min-width: 200px;
+`

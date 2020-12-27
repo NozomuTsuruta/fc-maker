@@ -1,6 +1,7 @@
 import { Button, Container, Grid } from "@material-ui/core";
 import React, { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
+import styled from "styled-components";
 import { Export } from "../components/Export";
 import { Header } from "../components/Header";
 import { Hooks } from "../components/Hooks";
@@ -26,20 +27,24 @@ export default function Home() {
 
   return (
     <Header>
-      <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit(onSubmit)}>
-          <Container maxWidth="lg">
-            <Grid container spacing={3} direction="column">
+      <StyledContainer maxWidth="md">
+        <FormProvider {...methods}>
+          <form onSubmit={methods.handleSubmit(onSubmit)}>
+            <Grid container spacing={1} direction="column">
               <Name />
               <Export />
               <Props />
               <Hooks />
               <Button type="submit">SEND</Button>
             </Grid>
-          </Container>
-        </form>
-      </FormProvider>
-      {methods.formState.isSubmitted && <Output data={data} />}
+          </form>
+        </FormProvider>
+        {methods.formState.isSubmitted && <Output data={data} />}
+      </StyledContainer>
     </Header>
   );
 }
+
+const StyledContainer = styled(Container)`
+  margin-top: 30px;
+`;

@@ -1,8 +1,9 @@
-import { Button } from "@material-ui/core";
+import { Button, CardHeader, IconButton, Card } from "@material-ui/core";
 import React, { FC, useEffect, useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Markdown } from "./Markdown";
 import { FormData } from "../pages/index";
+import FileCopyIcon from "@material-ui/icons/FileCopy";
 
 type Props = {
   data: FormData;
@@ -82,10 +83,19 @@ export const Output: FC<Partial<Props>> = ({ data }) => {
     <>
       {isResult && (
         <>
-          <Markdown value={`\`\`\`${text}`} />
-          <CopyToClipboard text={text}>
-            <Button>Copy to clipboard with button</Button>
-          </CopyToClipboard>
+          <Card>
+            <CardHeader
+              action={
+                <CopyToClipboard text={text}>
+                  <IconButton>
+                    <FileCopyIcon />
+                  </IconButton>
+                </CopyToClipboard>
+              }
+              title="Created! Copy click right button →"
+            />
+            <Markdown value={`\`\`\`${text}`} />
+          </Card>
         </>
       )}
       {!isResult && <Button onClick={() => setIsResult(true)}>作成</Button>}

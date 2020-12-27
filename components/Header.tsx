@@ -1,11 +1,8 @@
 import {
   AppBar,
-  createStyles,
   CssBaseline,
   Fab,
-  makeStyles,
   Slide,
-  Theme,
   Toolbar,
   Typography,
   useScrollTrigger,
@@ -15,6 +12,7 @@ import React, { FC } from "react";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import { ReactElement } from "react";
 import { ReactNode } from "react";
+import styled from "styled-components";
 
 type Props = {
   window?: () => Window;
@@ -34,18 +32,7 @@ const HideOnScroll: FC<{ window?: () => Window; children: ReactElement }> = ({
   );
 };
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      position: "fixed",
-      bottom: theme.spacing(2),
-      right: theme.spacing(2),
-    },
-  })
-);
-
 const ScrollTop: FC<Props> = ({ window, children }) => {
-  const classes = useStyles();
   const trigger = useScrollTrigger({
     target: window ? window() : undefined,
     disableHysteresis: true,
@@ -64,9 +51,7 @@ const ScrollTop: FC<Props> = ({ window, children }) => {
 
   return (
     <Zoom in={trigger}>
-      <div onClick={handleClick} className={classes.root}>
-        {children}
-      </div>
+      <ButtonWrapper onClick={handleClick}>{children}</ButtonWrapper>
     </Zoom>
   );
 };
@@ -76,11 +61,11 @@ export const Header: FC<Props> = (props) => {
     <>
       <CssBaseline />
       <HideOnScroll {...props}>
-        <AppBar>
+        <StyledAppBar>
           <Toolbar>
             <Typography variant="h6">RFC Generator</Typography>
           </Toolbar>
-        </AppBar>
+        </StyledAppBar>
       </HideOnScroll>
       <Toolbar id="back-to-top-anchor" />
       {props.children}
@@ -92,3 +77,13 @@ export const Header: FC<Props> = (props) => {
     </>
   );
 };
+
+const ButtonWrapper = styled.div`
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+`;
+
+const StyledAppBar = styled(AppBar)`
+  background-color: #20232a;
+`;

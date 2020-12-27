@@ -6,24 +6,15 @@ import styled from "styled-components";
 type Props = {
   title: string;
   variant?: "h6" | "subtitle1";
-  action?: JSX.Element;
 };
 
-export const Wrapper: FC<Props> = ({
-  children,
-  title,
-  variant = "h6",
-  action,
-}) => {
+export const Wrapper: FC<Props> = ({ children, title, variant = "h6" }) => {
   return (
     <Grid item xs={12}>
       <StyledPaper variant="outlined">
-        <Title>
-          <Typography variant={variant} color="primary">
-            {title}
-          </Typography>
-          {action}
-        </Title>
+        <StyledTypography variant={variant}>
+          {title}
+        </StyledTypography>
         {children}
       </StyledPaper>
     </Grid>
@@ -32,9 +23,10 @@ export const Wrapper: FC<Props> = ({
 
 const StyledPaper = styled(Paper)`
   padding: 20px;
+  margin-bottom: 20px;
 `;
 
-const Title = styled.div`
-  display: flex;
-  align-content: center;
+const StyledTypography = styled(Typography)`
+  margin-bottom: 20px!important;
+  line-height: 1;
 `;
