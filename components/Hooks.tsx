@@ -1,12 +1,16 @@
 import {
   Button,
   FormControl,
+  IconButton,
   MenuItem,
   Select,
-  TextField,
 } from "@material-ui/core";
 import React from "react";
 import { Controller, useFieldArray, useFormContext } from "react-hook-form";
+import AddIcon from "@material-ui/icons/Add";
+import ClearIcon from "@material-ui/icons/Clear";
+import { Input } from "./Input";
+import { Wrapper } from "./Wrapper";
 
 export const Hooks = () => {
   const { control, register } = useFormContext();
@@ -16,7 +20,7 @@ export const Hooks = () => {
   });
 
   return (
-    <>
+    <Wrapper title="Hooks">
       {fields.map((item, index) => (
         <div key={item.id}>
           <FormControl>
@@ -26,7 +30,7 @@ export const Hooks = () => {
               defaultValue="state"
               render={({ onChange, onBlur, ref }) => (
                 <Select
-                  label="Hooks"
+                  variant="outlined"
                   onBlur={onBlur}
                   onChange={(e) => onChange(e.target.value)}
                   inputRef={ref}>
@@ -37,17 +41,16 @@ export const Hooks = () => {
               )}
             />
           </FormControl>
-          <TextField
-            name={`hooks[${index}].state`}
-            inputRef={register}
-            label="変数名など"
-          />
-          <Button onClick={() => remove(index)}>Delete</Button>
+          <Input name={`hooks[${index}].state`} inputRef={register} />
+          <IconButton onClick={() => remove(index)}>
+            <ClearIcon />
+          </IconButton>
         </div>
       ))}
       <Button type="button" onClick={() => append({})}>
-        append
+        <AddIcon />
+        <span>追加する</span>
       </Button>
-    </>
+    </Wrapper>
   );
 };

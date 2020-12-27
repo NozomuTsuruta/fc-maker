@@ -1,4 +1,4 @@
-import { Button } from "@material-ui/core";
+import { Button, Container, Grid } from "@material-ui/core";
 import React, { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { Export } from "../components/Export";
@@ -20,11 +20,15 @@ export default function Home() {
     <>
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
-          <Name />
-          <Export />
-          <Props />
-          <Hooks />
-          <Button type="submit">SEND</Button>
+          <Container maxWidth="lg">
+            <Grid container spacing={3} direction="column">
+              <Name />
+              <Export />
+              <Props />
+              <Hooks />
+              <Button type="submit">SEND</Button>
+            </Grid>
+          </Container>
         </form>
       </FormProvider>
       {methods.formState.isSubmitted && <Output data={data} />}

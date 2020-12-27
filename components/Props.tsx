@@ -1,6 +1,8 @@
-import { Button, TextField } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import React from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
+import { Input } from "./Input";
+import { Wrapper } from "./Wrapper";
 
 export const Props = () => {
   const { control, register } = useFormContext();
@@ -9,19 +11,11 @@ export const Props = () => {
     name: "props",
   });
   return (
-    <>
+    <Wrapper title="Props">
       {fields.map((item, index) => (
         <div key={item.id}>
-          <TextField
-            name={`props[${index}].name`}
-            inputRef={register}
-            label="props名"
-          />
-          <TextField
-            name={`props[${index}].type`}
-            inputRef={register}
-            label="型"
-          />
+          <Input name={`props[${index}].name`} inputRef={register} />
+          <Input name={`props[${index}].type`} inputRef={register} />
           <Button type="button" onClick={() => remove(index)}>
             Delete
           </Button>
@@ -30,6 +24,6 @@ export const Props = () => {
       <Button type="button" onClick={() => append({})}>
         append
       </Button>
-    </>
+    </Wrapper>
   );
 };
