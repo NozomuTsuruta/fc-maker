@@ -1,4 +1,4 @@
-import { Card, Typography } from "@material-ui/core";
+import { Paper, Typography } from "@material-ui/core";
 import React from "react";
 import { ReactNode } from "react";
 import { FC } from "react";
@@ -25,7 +25,7 @@ export const Wrapper: FC<Props> = ({
   );
 };
 
-const StyledPaper = styled(Card)`
+const StyledPaper = styled(Paper)`
   padding: 20px;
   margin-bottom: 20px;
   position: relative;
