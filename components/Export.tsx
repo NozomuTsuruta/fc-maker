@@ -18,8 +18,8 @@ export const Export = () => {
       <RadioGroup>
         {radioList.map((name) => (
           <FormControlLabel
-            control={<Radio />}
-            label={`${name} export`}
+            control={<Radio color="primary" />}
+            label={`${name[0].toUpperCase() + name.slice(1)} Export`}
             ref={field.ref}
             onChange={field.onChange}
             onBlur={field.onBlur}

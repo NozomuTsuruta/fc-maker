@@ -1,6 +1,7 @@
-import { Grid, Typography } from "@material-ui/core";
+import { Grid, Paper, Typography } from "@material-ui/core";
 import React from "react";
 import { FC } from "react";
+import styled from "styled-components";
 
 type Props = {
   title: string;
@@ -8,11 +9,17 @@ type Props = {
 
 export const Wrapper: FC<Props> = ({ children, title }) => {
   return (
-    <Grid item xs={12} md={4} lg={3}>
-      <Typography component="h2" variant="h6" color="primary" gutterBottom>
-        {title}
-      </Typography>
-      {children}
+    <Grid item xs={12}>
+      <StyledPaper variant="outlined">
+        <Typography variant="h6" color="primary" gutterBottom>
+          {title}
+        </Typography>
+        {children}
+      </StyledPaper>
     </Grid>
   );
 };
+
+const StyledPaper = styled(Paper)`
+  padding: 20px;
+`;

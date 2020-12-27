@@ -7,11 +7,18 @@ import { Name } from "../components/Name";
 import { Output } from "../components/Output";
 import { Props } from "../components/Props";
 
-export default function Home() {
-  const methods = useForm();
-  const [data, setData] = useState();
+export type FormData = {
+  name: string;
+  exportType: "named" | "default";
+  props: { name: string; type: string }[];
+  hooks: { name: string; state: string }[];
+};
 
-  const onSubmit = (data: any) => {
+export default function Home() {
+  const methods = useForm<FormData>();
+  const [data, setData] = useState<FormData>();
+
+  const onSubmit = (data: FormData) => {
     console.log(data);
     setData(data);
   };
