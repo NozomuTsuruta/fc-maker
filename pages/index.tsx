@@ -2,6 +2,7 @@ import { Button, Container, Grid } from "@material-ui/core";
 import React, { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { Export } from "../components/Export";
+import { Header } from "../components/Header";
 import { Hooks } from "../components/Hooks";
 import { Name } from "../components/Name";
 import { Output } from "../components/Output";
@@ -24,7 +25,7 @@ export default function Home() {
   };
 
   return (
-    <>
+    <Header>
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
           <Container maxWidth="lg">
@@ -39,6 +40,6 @@ export default function Home() {
         </form>
       </FormProvider>
       {methods.formState.isSubmitted && <Output data={data} />}
-    </>
+    </Header>
   );
 }
