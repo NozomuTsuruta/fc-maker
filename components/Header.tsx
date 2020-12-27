@@ -13,6 +13,7 @@ import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import { ReactElement } from "react";
 import { ReactNode } from "react";
 import styled from "styled-components";
+import BuildRoundedIcon from "@material-ui/icons/BuildRounded";
 
 type Props = {
   window?: () => Window;
@@ -63,7 +64,8 @@ export const Header: FC<Props> = (props) => {
       <HideOnScroll {...props}>
         <StyledAppBar>
           <Toolbar>
-            <Typography variant="h6">RFC Generator</Typography>
+            <Typography variant="h6">React Maker</Typography>
+            <BuildRoundedIcon />
           </Toolbar>
         </StyledAppBar>
       </HideOnScroll>

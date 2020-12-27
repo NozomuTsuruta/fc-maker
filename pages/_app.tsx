@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { AppProps } from "next/app";
 import { StylesProvider } from "@material-ui/core";
+import { Header } from "../components/Header";
+import { Sidebar } from "../components/Sidebar";
 
 export default function App({ Component, pageProps }: AppProps) {
   /**
@@ -15,7 +17,10 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <StylesProvider injectFirst>
-      <Component {...pageProps} />
+      <Header>
+        <Sidebar />
+        <Component {...pageProps} />
+      </Header>
     </StylesProvider>
   );
 }

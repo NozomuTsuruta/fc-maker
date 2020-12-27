@@ -2,10 +2,11 @@ import {
   Button,
   FormControl,
   IconButton,
+  InputLabel,
   MenuItem,
   Select,
 } from "@material-ui/core";
-import styled from 'styled-components'
+import styled from "styled-components";
 import React from "react";
 import { Controller, useFieldArray, useFormContext } from "react-hook-form";
 import AddIcon from "@material-ui/icons/Add";
@@ -23,8 +24,17 @@ export const Hooks = () => {
   return (
     <Wrapper title="Hooks">
       {fields.map((item, index) => (
-        <Wrapper key={item.id} title={`Hooks ${index + 1}`} variant="subtitle1">
-          <FormControl>
+        <Wrapper
+          key={item.id}
+          title={`Hooks ${index + 1}`}
+          variant="subtitle1"
+          action={
+            <IconButton onClick={() => remove(index)}>
+              <ClearIcon />
+            </IconButton>
+          }>
+          <FormControl variant="outlined">
+            <InputLabel htmlFor="label">Name</InputLabel>
             <Controller
               name={`hooks[${index}].name`}
               control={control}
@@ -34,6 +44,9 @@ export const Hooks = () => {
                   variant="outlined"
                   onBlur={onBlur}
                   onChange={(e) => onChange(e.target.value)}
+                  autoFocus
+                  label="Name"
+                  labelId="label"
                   inputRef={ref}>
                   <MenuItem value="state">useState</MenuItem>
                   <MenuItem value="effect">useEffect</MenuItem>
@@ -42,15 +55,19 @@ export const Hooks = () => {
               )}
             />
           </FormControl>
-          <Input name={`hooks[${index}].state`} inputRef={register} />
-          <IconButton onClick={() => remove(index)}>
-            <ClearIcon />
-          </IconButton>
+          <Input
+            name={`hooks[${index}].state`}
+            inputRef={register}
+            label="Value"
+          />
         </Wrapper>
       ))}
-      <Button type="button" onClick={() => append({})} variant="outlined">
-        <AddIcon />
-        <span>追加する</span>
+      <Button
+        type="button"
+        onClick={() => append({})}
+        variant="outlined"
+        startIcon={<AddIcon />}>
+        <span>add</span>
       </Button>
     </Wrapper>
   );
@@ -58,4 +75,5 @@ export const Hooks = () => {
 
 const StyledSelect = styled(Select)`
   min-width: 200px;
-`
+  margin-right: 20px;
+`;

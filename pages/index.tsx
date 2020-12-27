@@ -26,8 +26,7 @@ export default function Home() {
   };
 
   return (
-    <Header>
-      <StyledContainer maxWidth="md">
+      <StyledContainer>
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(onSubmit)}>
             <Grid container spacing={1} direction="column">
@@ -41,10 +40,11 @@ export default function Home() {
         </FormProvider>
         {methods.formState.isSubmitted && <Output data={data} />}
       </StyledContainer>
-    </Header>
   );
 }
 
 const StyledContainer = styled(Container)`
-  margin-top: 30px;
+  padding: 30px 150px;
+  background-color: #f5f5f5;
+  overflow-y: auto;
 `;

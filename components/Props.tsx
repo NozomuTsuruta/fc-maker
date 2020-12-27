@@ -15,17 +15,33 @@ export const Props = () => {
   return (
     <Wrapper title="Props">
       {fields.map((item, index) => (
-        <Wrapper key={item.id} title={`Props ${index + 1}`} variant="subtitle1">
-          <Input name={`props[${index}].name`} inputRef={register} />
-          <Input name={`props[${index}].type`} inputRef={register} />
-          <IconButton onClick={() => remove(index)}>
-            <ClearIcon />
-          </IconButton>
+        <Wrapper
+          key={item.id}
+          title={`Props ${index + 1}`}
+          variant="subtitle1"
+          action={
+            <IconButton onClick={() => remove(index)}>
+              <ClearIcon />
+            </IconButton>
+          }>
+          <Input
+            name={`props[${index}].name`}
+            inputRef={register}
+            label="Name"
+          />
+          <Input
+            name={`props[${index}].type`}
+            inputRef={register}
+            label="Type"
+          />
         </Wrapper>
       ))}
-      <Button type="button" onClick={() => append({})} variant="outlined">
-        <AddIcon />
-        <span>追加する</span>
+      <Button
+        type="button"
+        onClick={() => append({})}
+        variant="outlined"
+        startIcon={<AddIcon />}>
+        <span>add</span>
       </Button>
     </Wrapper>
   );

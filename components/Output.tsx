@@ -92,7 +92,7 @@ export const Output: FC<Partial<Props>> = ({ data }) => {
                   </IconButton>
                 </CopyToClipboard>
               }
-              title="Created! Copy click right button →"
+              title="created! copy click right button 👉"
             />
             <Markdown value={`\`\`\`${text}`} />
           </Card>

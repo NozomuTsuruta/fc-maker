@@ -10,6 +10,7 @@ export const Name = () => {
       <Input
         inputRef={register({ required: true })}
         name="name"
+        label="Name"
       />
     </Wrapper>
   );

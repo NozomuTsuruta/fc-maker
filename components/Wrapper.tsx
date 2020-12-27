@@ -1,32 +1,43 @@
-import { Grid, Paper, Typography } from "@material-ui/core";
+import { Card, Typography } from "@material-ui/core";
 import React from "react";
+import { ReactNode } from "react";
 import { FC } from "react";
 import styled from "styled-components";
 
 type Props = {
   title: string;
   variant?: "h6" | "subtitle1";
+  action?: ReactNode;
 };
 
-export const Wrapper: FC<Props> = ({ children, title, variant = "h6" }) => {
+export const Wrapper: FC<Props> = ({
+  children,
+  title,
+  variant = "h6",
+  action,
+}) => {
   return (
-    <Grid item xs={12}>
-      <StyledPaper variant="outlined">
-        <StyledTypography variant={variant}>
-          {title}
-        </StyledTypography>
-        {children}
-      </StyledPaper>
-    </Grid>
+    <StyledPaper variant="outlined">
+      <StyledTypography variant={variant}>{title}</StyledTypography>
+      <Action>{action}</Action>
+      {children}
+    </StyledPaper>
   );
 };
 
-const StyledPaper = styled(Paper)`
+const StyledPaper = styled(Card)`
   padding: 20px;
   margin-bottom: 20px;
+  position: relative;
 `;
 
 const StyledTypography = styled(Typography)`
-  margin-bottom: 20px!important;
+  margin-bottom: 20px !important;
   line-height: 1;
+`;
+
+const Action = styled.div`
+  position: absolute;
+  top: 5px;
+  right: 5px;
 `;
